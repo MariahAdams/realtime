@@ -1,8 +1,9 @@
-import { USER_LOAD } from './reducers';
+import { user, USER_LOAD } from './reducers';
 
 describe('app reducers', () => {
 
-  it('testing', () => {
-    
+  it('inits to null', () => {
+    const state = user(undefined, {});
+    expect(state).toBe(null);
   });
 });
