@@ -32,6 +32,7 @@ export const login = () => {
 export const requestGame = () => {
   return (dispatch, getState) => {
     const user = getUser(getState());
-    playersRef.child(user.uid).set(true);
+    playersRef.child(user.uid).set(true)
+      .catch(console.log);
   };
 };
