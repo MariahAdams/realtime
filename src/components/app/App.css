@@ -1,0 +1,23 @@
+:local(.app) {
+
+  h1 {
+    color: #2c3e50;
+  }
+  
+  header {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: steelblue;
+  }
+
+  nav-ul {
+    align-content: center;
+  }
+
+  main {
+    margin: 0% 4% 0% 4%;
+  }
+
+}

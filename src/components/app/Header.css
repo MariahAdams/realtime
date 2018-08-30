@@ -1,0 +1,22 @@
+:local(.header) {
+
+  display: flex;
+  font-family: 'Roboto', sans-serif;
+  justify-content: center;
+
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0px;
+    width: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+}
