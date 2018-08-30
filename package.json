@@ -4,6 +4,7 @@
   "description": "Project Description Stay tuned!",
   "main": "index.js",
   "dependencies": {
+    "file-loader": "^2.0.0",
     "firebase": "^5.4.1",
     "prop-types": "^15.6.2",
     "query-string": "^6.1.0",

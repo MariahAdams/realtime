@@ -21,22 +21,13 @@ class Home extends Component {
       <div className={styles.home}>
         <h2>Welcome to the app!</h2>
         {
-          user && <section>
-            <button onClick={requestGame}>Play Game</button>
-            <ul>
-              {games.map((gameKey, i) => (
-                <li key={gameKey}>
-                  <Link to={`/games/${gameKey}`}>Game {i + 1}</Link>
-                </li>
-              ))}
-            </ul>
-          </section>
+          user && <UserGames games={games} onRequest={requestGame}/>
         }
       </div>
     );
   }
 }
- 
+
 export default connect(
   state => ({
     user: getUser(state),
@@ -44,3 +35,24 @@ export default connect(
   }),
   { requestGame }
 )(Home);
+
+const UserGames = ({ onRequest, games }) => {
+  return (
+    <section>
+      <button onClick={onRequest}>Play Game</button>
+      <ul>
+        {games.map((gameKey, i) => (
+          <li key={gameKey}>
+            <Link to={`/games/${gameKey}`}>Game {i + 1}</Link>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+};
+
+UserGames.propTypes = {
+  games: PropTypes.array.isRequired,
+  onRequest: PropTypes.func.isRequired
+};
+ 
