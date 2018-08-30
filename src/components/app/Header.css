@@ -19,4 +19,8 @@
     justify-content: space-around;
   }
 
+  a {
+    margin: 4px;
+  }
+
 }
