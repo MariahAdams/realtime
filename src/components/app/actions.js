@@ -30,6 +30,7 @@ export const login = () => {
 };
 
 export const requestGame = () => {
+  console.log('Play game!!!');
   return (dispatch, getState) => {
     const user = getUser(getState());
     playersRef.child(user.uid).set(true)

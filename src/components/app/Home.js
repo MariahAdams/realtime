@@ -9,7 +9,7 @@ class Home extends Component {
 
   static propTypes = {
     user: PropTypes.object,
-    requestGame: PropTypes.func
+    requestGame: PropTypes.func.isRequired
   };
   
   render() { 
