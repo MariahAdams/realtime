@@ -1,7 +1,6 @@
-import { ERROR_CLEAR, ERROR, USER_LOAD, getUser } from './reducers';
+import { ERROR_CLEAR, ERROR, USER_LOAD, getUser, GAME_LOAD } from './reducers';
 import { auth } from '../../services/firebase';
-import { playersRef } from '../../services/firebaseRef';
-//TODO: userGamesRef
+import { playersRef, userGamesRef } from '../../services/firebaseRef';
 
 export const clearError = () => ({ type: ERROR_CLEAR });
 
@@ -13,6 +12,13 @@ export const login = () => {
         dispatch({
           type: USER_LOAD,
           payload: user
+        });
+
+        userGamesRef.child(user.uid).on('value', snapshot => {
+          dispatch({
+            type: GAME_LOAD,
+            payload: Object.keys(snapshot.val())
+          });
         });
 
       } else {
@@ -28,6 +34,7 @@ export const login = () => {
     });
   };
 };
+
 
 export const requestGame = () => {
   console.log('Play game!!!');

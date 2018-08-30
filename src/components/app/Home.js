@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getUser } from './reducers';
+import { getUser, getGames } from './reducers';
 import { requestGame } from './actions';
 import PropTypes from 'prop-types';
 import styles from './Home.css';
@@ -30,7 +30,8 @@ class Home extends Component {
  
 export default connect(
   state => ({
-    user: getUser(state)
+    user: getUser(state),
+    games: getGames(state)
   }),
   { requestGame }
 )(Home);
