@@ -1,4 +1,4 @@
-import { ERROR_CLEAR/* , ERROR */ } from './reducers';
+import { ERROR_CLEAR, ERROR } from './reducers';
 import { auth } from '../../services/firebase';
 //TODO: playersRef, userGamesRef
 
@@ -8,9 +8,20 @@ export const login = () => {
   return dispatch => {
     auth.onAuthStateChanged(user => {
       if(user) {
-        console.log('user logged in!');
+        
+        dispatch({
+          type: USER_LOAD,
+          payload: 
+        });
+
       } else {
-        console.log('Opps. Fail. Try again.');
+        auth.signInAnonymously()
+          .catch(err => {
+            dispatch({
+              type: ERROR,
+              payload: err.message
+            });
+          });
       }
     });
   };
