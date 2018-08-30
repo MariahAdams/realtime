@@ -2,6 +2,7 @@ export const ERROR = 'ERROR';
 export const ERROR_CLEAR = 'ERROR_CLEAR';
 export const LOAD_START = 'LOAD_START';
 export const LOAD_END = 'LOAD_END';
+export const USER_LOAD = 'USER_LOAD';
 
 export const getError = state => state.error;
 export const getLoading = state => state.loading;
@@ -29,4 +30,11 @@ export function loading(state = false, { type }) {
   }
 }
 
-export 
+export function user(state = null, { type, payload }) {
+  switch(type) {
+    case USER_LOAD:
+      return payload;
+    default: 
+      return state;
+  }
+}
