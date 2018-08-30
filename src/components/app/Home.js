@@ -9,6 +9,10 @@ class Home extends Component {
   static propTypes = {
     user: PropTypes.object
   };
+
+  requestGame = () => {
+    console.log('Go!');
+  };
   
   render() { 
     const { user } = this.props;
@@ -17,7 +21,9 @@ class Home extends Component {
       <div className={styles.home}>
         <h2>Welcome to the app!</h2>
         {
-          user ? <div>User <span style={{ color: 'blue' }}>{user.uid}</span> is logged in.</div> : <div>No user.</div>
+          user && <section>
+            <button onClick={this.requestGame}>Play Game</button>
+          </section>
         }
       </div>
     );
