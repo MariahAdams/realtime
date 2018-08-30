@@ -5,11 +5,13 @@ import { auth } from '../../services/firebase';
 export const clearError = () => ({ type: ERROR_CLEAR });
 
 export const login = () => {
-  auth.onAuthStateChanged(user => {
-    if(user) {
-      console.log('user logged in!');
-    } else {
-      console.log('Opps. Fail. Try again.');
-    }
-  });
+  return dispatch => {
+    auth.onAuthStateChanged(user => {
+      if(user) {
+        console.log('user logged in!');
+      } else {
+        console.log('Opps. Fail. Try again.');
+      }
+    });
+  };
 };
