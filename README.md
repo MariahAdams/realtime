@@ -1,7 +1,7 @@
 # Realtime Redux
 
 ## Project Description
-Stay tuned!
+Experimenting with integrating firebase real time data with redux to make an awesome game :) Stay tuned!
 
 ## Developer
 Requires Node v10 or later.

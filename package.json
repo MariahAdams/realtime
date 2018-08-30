@@ -1,9 +1,10 @@
 {
-  "name": "realtime",
+  "name": "realtime-redux",
   "version": "1.0.0",
-  "description": "## Project Description Stay tuned!",
-  "main": "postcss.config.js",
+  "description": "Project Description Stay tuned!",
+  "main": "index.js",
   "dependencies": {
+    "firebase": "^5.4.1",
     "prop-types": "^15.6.2",
     "query-string": "^6.1.0",
     "react": "^16.4.2",
