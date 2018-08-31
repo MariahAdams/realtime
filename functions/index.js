@@ -53,17 +53,21 @@ exports.moveQueue = functions.database.ref('/moves/{gameKey}/{uid}').onCreate((s
       
       const roundRef = gamesRef.child(gameKey).child('rounds').push();
 
+      const winner = calculateWinner(moves) || 'TIE';
+
       return Promise.all([
         gameMovesRef.remove(),
         roundRef.set({
           moves,
-          winner: calculateWinner(moves)
-        })
+          winner
+        }),
+        roundRef.limitToLast(1)
       ]);
     });
 });
 
 const calculateWinner = ([move1, move2]) => {
+  if(move1.play === move2.play) return null; 
   if(isWinner(move1.play, move2.play)) return move1.uid;
   if(isWinner(move2.play, move1.play)) return move2.uid;
   return null;

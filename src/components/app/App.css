@@ -6,6 +6,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     background-color: steelblue;
+    border-bottom: 6px solid #DC2933;
   }
 
   nav-ul {
@@ -22,12 +23,12 @@
     font-size: 18px;
     border: 2px solid steelblue;
     border-radius: 4px;
-    -webkit-transition-duration: 0.4s; /* Safari */
+    -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
   }
 
   button:hover {
-      background-color: steelblue; /* Green */
+      background-color: steelblue; 
       color: white;
   }
 

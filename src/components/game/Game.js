@@ -32,7 +32,10 @@ class Game extends Component {
     if(!game || !user) return null;
 
     const { uid } = user;
-    const who = player => player === uid ? 'YOU' : 'THEM';
+    const who = player => {
+      if(player === 'TIE') return 'TIE';
+      return player === uid ? 'YOU' : 'THEM';
+    };
 
     const player1 = who(game.player1);
     const player2 = who(game.player2);
