@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { getUser, getGames } from './reducers';
-import { Link } from 'react-router-dom';
-import { requestGame } from './actions';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { getUser, getGames } from './reducers';
+import { requestGame } from './actions';
 import styles from './Home.css';
 
 class Home extends Component {

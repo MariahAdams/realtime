@@ -17,13 +17,11 @@ class Game extends Component {
   };
 
   componentDidMount() {
-    console.log('Game component did mount!');
     const { match, loadGame } = this.props;
     loadGame(match.params.gameKey);
   }
   
   componentWillUnmount() {
-    console.log('Game component unmounted');
     const { match, unloadGame } = this.props;
     unloadGame(match.params.gameKey);
   }
@@ -47,7 +45,7 @@ class Game extends Component {
         </p>
 
         <ul>
-          {game.rounds && Object.keys(game.round).map((key, i) => {
+          {game.rounds && Object.keys(game.rounds).map((key, i) => {
             const round = game.rounds[key];
             return (
               <li key={i}>
@@ -67,7 +65,8 @@ class Game extends Component {
             <button 
               key={play} 
               onClick={() => move(play)}>
-              {play}</button>
+              {play}
+            </button>
           ))}
         </p>
       </section>

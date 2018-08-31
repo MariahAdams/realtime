@@ -5,8 +5,8 @@ admin.initializeApp(functions.config().firebase);
 const db = admin.database();
 const playersRef = db.ref('players');
 const gamesRef = db.ref('games');
-const userGamesRef = db.ref('userGames');
 const movesRef = db.ref('moves');
+const userGamesRef = db.ref('userGames');
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -37,7 +37,7 @@ exports.playerQueue = functions.database.ref('/players/{uid}').onCreate((snapsho
 
 exports.moveQueue = functions.database.ref('/moves/{gameKey}/{uid}').onCreate((snapshot, context) => {
   // Grab the current value of what was written to the Realtime Database.
-  const { gameKey, uid } = context.params;
+  const { gameKey } = context.params;
 
   const gameMovesRef = movesRef.child(gameKey);
 
@@ -47,11 +47,11 @@ exports.moveQueue = functions.database.ref('/moves/{gameKey}/{uid}').onCreate((s
       const moves = Object.keys(game)
         .map(key => ({
           uid: key,
-          move: game[key]
+          play: game[key]
         }));
       if(moves.length < 2) return null; //waiting for other player to move
       
-      const roundRef = gamesMovesRef.child(gameKey).child('rounds').push();
+      const roundRef = gamesRef.child(gameKey).child('rounds').push();
 
       return Promise.all([
         gamesMovesRef.remove(),
