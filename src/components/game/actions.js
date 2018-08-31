@@ -26,6 +26,7 @@ export const unloadGame = gameKey => {
 };
 
 export const move = play => {
+  console.log('***play***', play);
   return (dispatch, getState) => {
     const state = getState();
     const game = getGame(state);

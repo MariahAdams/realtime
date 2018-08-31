@@ -29,6 +29,7 @@ class Game extends Component {
   render() { 
     const { game, user, move } = this.props;
     if(!game || !user) return null;
+    console.log('***move***', move);
 
     const { uid } = user;
     const who = player => player === uid ? 'YOU' : 'THEM';
@@ -47,6 +48,7 @@ class Game extends Component {
         <ul>
           {game.rounds && Object.keys(game.rounds).map((key, i) => {
             const round = game.rounds[key];
+            console.log('***round***', round);
             return (
               <li key={i}>
                 <ul>
