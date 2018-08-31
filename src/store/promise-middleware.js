@@ -23,6 +23,7 @@ export default ({ dispatch }) => next => action => {
       err => {
         dispatch({ type: LOAD_END });
         dispatch({ type: ERROR, payload: err });
+        throw err;
       }
     );
 

@@ -1,11 +1,22 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { login } from './actions';
 import Header from './Header';
 import Home from './Home';
 import Game from '../game/Game';
 import styles from './App.css';
 
 class App extends Component {
+
+  static propTypes = {
+    login: PropTypes.func.isRequired
+  };
+
+  componentDidMount() {
+    this.props.login();
+  }
 
   render() {
 
@@ -14,14 +25,17 @@ class App extends Component {
         <Fragment>
           <div className={styles.app}>
             <header>
-              <h1>Hello React!</h1>
+              <div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Atom_symbol_as_used_in_the_logo_of_the_television_series_The_Big_Bang_Theory_%28black%29.svg/2000px-Atom_symbol_as_used_in_the_logo_of_the_television_series_The_Big_Bang_Theory_%28black%29.svg.png"/>
+                <h4 className="title">Rock, Paper, Scissors, Lizard, Spock!</h4>
+              </div>
               <Header/>
             </header>
 
             <main>
               <Switch>
                 <Route exact path="/" component={Home}/>
-                <Route exact path="/game" component={Game}/>
+                <Route exact path="/games/:gameKey" component={Game}/>
                 <Redirect to="/"/>
               </Switch>
             </main>
@@ -32,4 +46,7 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(
+  null,
+  { login }
+)(App);
