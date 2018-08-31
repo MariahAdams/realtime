@@ -38,5 +38,46 @@ exports.moveQueue = functions.database.ref('/moves/{gameKey}/{uid}').onCreate((s
   // Grab the current value of what was written to the Realtime Database.
   const { gameKey, uid } = context.params;
 
-  const gameRef = snapshot.ref.parent;
+  const gameMovesRef = snapshot.ref.parent;
+
+  gameMovesRef.once('value')
+    .value(snapshot => {
+      const game = snapshot.val();
+      const moves = Object.keys(game)
+        .map(key => ({
+          uid: key,
+          move: game[key]
+        }));
+      if(moves.length < 2) return null; //waiting for other player to move
+      
+      const roundRef = gamesMovesRef.child(gameKey).child('rounds').push();
+
+      return Promise.all([
+        gamesMovesRef.remove(),
+        roundRef.set({
+          moves,
+          winner: calculateWinner(moves)
+        })
+      ]);
+    });
 });
+
+const calculateWinner = ([move1, move2]) => {
+  if(isWinner(move1.play, move2.play)) return move1.uid;
+  if(isWinner(move2.play, move1.play)) return move2.uid;
+  return null;
+};
+
+const isWinner = (play1, play2) => {
+  if(play1 === 'SCISSORS' && play2 === 'PAPER') return true;
+  if(play1 === 'PAPER' && play2 === 'ROCK') return true;
+  if(play1 === 'ROCK' && play2 === 'SCISSORS') return true;
+  if(play1 === 'SCISSORS' && play2 === 'LIZARD') return true;
+  if(play1 === 'LIZARD' && play2 === 'SPOCK') return true;
+  if(play1 === 'SPOCK' && play2 === 'ROCK') return true;
+  if(play1 === 'ROCK' && play2 === 'LIZARD') return true;
+  if(play1 === 'LIZARD' && play2 === 'PAPER') return true;
+  if(play1 === 'PAPER' && play2 === 'SPOCK') return true;
+  if(play1 === 'SPOCK' && play2 === 'SCISSORS') return true;
+  return false;
+};

@@ -1,4 +1,4 @@
-import { ERROR_CLEAR, ERROR, USER_LOAD, getUser, GAME_LOAD } from './reducers';
+import { ERROR_CLEAR, ERROR, USER_LOAD, getUser, GAMES_LOAD } from './reducers';
 import { auth } from '../../services/firebase';
 import { playersRef, userGamesRef } from '../../services/firebaseRef';
 
@@ -16,7 +16,7 @@ export const login = () => {
 
         userGamesRef.child(user.uid).on('value', snapshot => {
           dispatch({
-            type: GAME_LOAD,
+            type: GAMES_LOAD,
             payload: Object.keys(snapshot.val())
           });
         });
