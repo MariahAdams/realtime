@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getGame } from './reducers';
+import { getUser } from '../app/reducers';
 import { loadGame, unloadGame } from './actions';
 
 
@@ -10,6 +11,7 @@ class Game extends Component {
   static propTypes = {
     match: PropTypes.object,
     game: PropTypes.object,
+    user: PropTypes.object.isRequired,
     loadGame: PropTypes.func.isRequired,
     unloadGame: PropTypes.func.isRequired
   };
@@ -27,18 +29,22 @@ class Game extends Component {
   }
 
   render() { 
-    const { game } = this.props;
-    if(!game) return null;
+    const { game, user } = this.props;
+    if(!game || !user) return null;
+
+    const { uid } = user;
+    const who = player => player === uid ? 'YOU' : 'THEM';
+
+    const player1 = who(game.player1);
+    const player2 = who(game.player2);
 
     return ( 
       <section>
         <h1>Rock, Paper, Scissors, Lizard, Spock!</h1>
         <h3>Players:</h3>
-        {game &&
-          <p>
-            {game.player1} vs {game.player2}
-          </p>
-        }
+        <p>
+          {player1} <b>vs</b> {player2}
+        </p>
       </section>
 
     );
@@ -47,7 +53,8 @@ class Game extends Component {
  
 export default connect(
   (state) => ({
-    game: getGame(state)
+    game: getGame(state),
+    user: getUser(state)
   }),
   { loadGame, unloadGame }
 )(Game);
