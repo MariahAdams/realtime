@@ -41,6 +41,11 @@ export const requestGame = () => {
   return (dispatch, getState) => {
     const user = getUser(getState());
     playersRef.child(user.uid).set(true)
-      .catch(console.log);
+      .catch(err => {
+        dispatch({
+          type: ERROR,
+          payload: err.message
+        });
+      });
   };
 };

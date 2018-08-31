@@ -33,3 +33,10 @@ exports.playerQueue = functions.database.ref('/players/{uid}').onCreate((snapsho
 
     });
 });
+
+exports.moveQueue = functions.database.ref('/moves/{gameKey}/{uid}').onCreate((snapshot, context) => {
+  // Grab the current value of what was written to the Realtime Database.
+  const { gameKey, uid } = context.params;
+
+  const gameRef = snapshot.ref.parent;
+});
