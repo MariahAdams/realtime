@@ -6,6 +6,7 @@ const db = admin.database();
 const playersRef = db.ref('players');
 const gamesRef = db.ref('games');
 const userGamesRef = db.ref('userGames');
+const movesRef = db.ref('moves');
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -38,10 +39,10 @@ exports.moveQueue = functions.database.ref('/moves/{gameKey}/{uid}').onCreate((s
   // Grab the current value of what was written to the Realtime Database.
   const { gameKey, uid } = context.params;
 
-  const gameMovesRef = snapshot.ref.parent;
+  const gameMovesRef = movesRef.child(gameKey);
 
-  gameMovesRef.once('value')
-    .value(snapshot => {
+  return gameMovesRef.once('value')
+    .then(snapshot => {
       const game = snapshot.val();
       const moves = Object.keys(game)
         .map(key => ({
