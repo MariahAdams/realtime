@@ -17,7 +17,7 @@ class Header extends Component {
                 exact activeStyle={{ color: 'white', borderBottom: '2px solid #F4F9F4', fontWeight: 'bold' }}
               >Home</NavLink>
               <NavLink
-                to="/game/:gameKey"
+                to="/games/:gameKey"
                 style={{ color: '#2c3e50', textDecoration: 'none', fontWeight: 'bold' }} 
                 activeStyle={{ color: 'white', borderBottom: '2px solid #F4F9F4', fontWeight: 'bold' }}
               >Game</NavLink>
