@@ -8,7 +8,6 @@ export const login = () => {
   return dispatch => {
     auth.onAuthStateChanged(user => {
       if(user) {
-        console.log('User logged in!', user);
         dispatch({
           type: USER_LOAD,
           payload: user
@@ -22,7 +21,6 @@ export const login = () => {
         });
 
       } else {
-        console.log('No user');
         auth.signInAnonymously()
           .catch(err => {
             dispatch({

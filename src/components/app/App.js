@@ -25,7 +25,10 @@ class App extends Component {
         <Fragment>
           <div className={styles.app}>
             <header>
-              <h1>Hello React!</h1>
+              <div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Atom_symbol_as_used_in_the_logo_of_the_television_series_The_Big_Bang_Theory_%28black%29.svg/2000px-Atom_symbol_as_used_in_the_logo_of_the_television_series_The_Big_Bang_Theory_%28black%29.svg.png"/>
+                <h4 className="title">Rock, Paper, Scissors, Lizard, Spock!</h4>
+              </div>
               <Header/>
             </header>
 

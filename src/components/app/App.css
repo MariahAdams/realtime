@@ -1,8 +1,4 @@
 :local(.app) {
-
-  h1 {
-    color: #2c3e50;
-  }
   
   header {
     padding: 20px;
@@ -22,6 +18,26 @@
 
   button {
     cursor: pointer;
+    margin: 4px;
+    font-size: 18px;
+    border: 2px solid steelblue;
+    border-radius: 4px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+  }
+
+  button:hover {
+      background-color: steelblue; /* Green */
+      color: white;
+  }
+
+  img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .title {
+    color: black;
   }
 
 }

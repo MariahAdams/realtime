@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getGame } from './reducers';
 import { getUser } from '../app/reducers';
 import { loadGame, unloadGame, move } from './actions';
+import styles from './Game.css';
 
 
 class Game extends Component {
@@ -29,7 +30,6 @@ class Game extends Component {
   render() { 
     const { game, user, move } = this.props;
     if(!game || !user) return null;
-    console.log('***move***', move);
 
     const { uid } = user;
     const who = player => player === uid ? 'YOU' : 'THEM';
@@ -38,8 +38,7 @@ class Game extends Component {
     const player2 = who(game.player2);
 
     return ( 
-      <section>
-        <h1>Rock, Paper, Scissors, Lizard, Spock!</h1>
+      <section  className={styles.game}>
         <h3>Players:</h3>
         <p>
           {player1} <b>vs</b> {player2}
@@ -48,14 +47,15 @@ class Game extends Component {
         <ul>
           {game.rounds && Object.keys(game.rounds).map((key, i) => {
             const round = game.rounds[key];
-            console.log('***round***', round);
+            
             return (
               <li key={i}>
                 <ul>
+                  <h3>Round {i + 1}</h3>
                   {round.moves.map(move => (
-                    <li key={move.uid}>{who(move.uid)}: {move.play}</li>
+                    <li key={move.uid}><span>{who(move.uid)}:</span> {move.play}</li>
                   ))}
-                  <li>winner: {who(round.winner)}</li>
+                  <li><h3 className="winner">Winner: {who(round.winner)}</h3></li>
                 </ul>
               </li>
             );

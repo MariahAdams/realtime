@@ -1,0 +1,20 @@
+:local(.game) {
+
+  ul {
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  li {
+    list-style: none;
+  }
+
+  span {
+    font-weight: bold;
+  }
+
+  .winner {
+    color: #DC2933;
+    margin: 0px;
+  }
+}

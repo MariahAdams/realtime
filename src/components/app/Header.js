@@ -13,13 +13,13 @@ class Header extends Component {
             <li>
               <NavLink
                 to="/"
-                style={{ color: '#2c3e50', textDecoration: 'none', fontWeight: 'bold' }} 
+                style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }} 
                 exact activeStyle={{ color: 'white', borderBottom: '2px solid #F4F9F4', fontWeight: 'bold' }}
               >Home</NavLink>
               <NavLink
                 to="/games/:gameKey"
-                style={{ color: '#2c3e50', textDecoration: 'none', fontWeight: 'bold' }} 
-                activeStyle={{ color: 'white', borderBottom: '2px solid #F4F9F4', fontWeight: 'bold' }}
+                style={{ color: 'black', textDecoration: 'none', fontWeight: 'bold' }} 
+                exact activeStyle={{ color: 'white', borderBottom: '2px solid #F4F9F4', fontWeight: 'bold' }}
               >Game</NavLink>
             </li>
           </ul>
